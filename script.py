@@ -24,7 +24,7 @@ def data():
 
 
 def main(projekat, entiteti):
-    with open(f"templates/main.py", 'r') as input, \
+    with open(f"templates/main.py.j2", 'r') as input, \
             open(f"../output/main.py", "w") as output:
         template_string = input.read()
         template = Template(template_string)
@@ -32,7 +32,7 @@ def main(projekat, entiteti):
         output.writelines(result)
 
 def entitet(entitet, atributi):
-    with open(f"templates/entitet.py", 'r') as input, \
+    with open(f"templates/entitet.py.j2", 'r') as input, \
             open(f"../output/{entitet}.py", "w") as output:
         template_string = input.read()
         template = Template(template_string)

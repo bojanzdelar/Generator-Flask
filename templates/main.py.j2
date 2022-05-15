@@ -2,8 +2,9 @@ import flask
 from flask import Flask
 from flaskext.mysql import MySQL, pymysql
 
-{% for entitet in entiteti %}from {{entitet}} import {{entitet}}
-{% endfor %}
+{%- for entitet in entiteti %}
+from {{entitet}} import {{entitet}}
+{%- endfor %}
 
 app = Flask(__name__, static_url_path="")
 
@@ -13,8 +14,9 @@ app.config["MYSQL_DATABASE_DB"] = "{{projekat}}"
 
 mysql = MySQL(app, cursorclass=pymysql.cursors.DictCursor)
 
-{% for entitet in entiteti %}app.register_blueprint({{entitet}}, url_prefix="/api/{{entitet}}")
-{% endfor %}
+{%- for entitet in entiteti %}
+app.register_blueprint({{entitet}}, url_prefix="/api/{{entitet}}")
+{%- endfor %}
 
 @app.route("/")
 def index():
